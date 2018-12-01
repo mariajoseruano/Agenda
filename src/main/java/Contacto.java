@@ -49,7 +49,25 @@ public class Contacto {
             
             
             this.telefono=telefono;
-        }     
-    
-   }
-
+        }  
+        public void setCorreo ( String correo)
+        {
+            if (!(correo.matches(ER_CORREO)))
+            
+                    throw new IllegalArgumentException("ERROR: El correo no tiene un formato válido");
+            
+            
+            this.telefono=telefono;
+        }  
+        
+    //5.Crea el constructor con los parametros adecuados y que haga el mismo control que en el caso anterior.
+         public Contacto ( String nombre, String telefono, String correo)
+         {
+             setNombre(nombre);
+             setTelefono(telefono);
+             setCorreo(correo);
+             
+         }
+                 
+   
+}
