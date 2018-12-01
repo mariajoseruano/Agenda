@@ -8,18 +8,48 @@
  *
  * @author Usuario
  */
-// 3.Creo la clase Contacto con sus atributos.
+// 3.Crear la clase Contacto con sus atributos.
 public class Contacto {
     
-    private String nombre;
-    private String telefono;
-    private String correo;
-    private String ER_TELEFONO;
-    private String ER_correo;
-    
+        private String nombre;
+        private String telefono;
+        private String correo;
+        private final String ER_TELEFONO= "[69][0-9]{8}";
+        private final String ER_CORREO="^[A-Za-z0-9-_]+(\\.[A-Za-z0-9-_]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+         
+               
+//4. Crear los métodos get y set.
         
-    
-           
+        public String getNombre(){
+            return nombre;
+        } 
+     
+        public String getTelefono(){
+            return nombre;
+        } 
+     
+        public String getcorreo(){
+            return nombre;
+        } 
+     
+        public void setNombre(String Nombre) 
+        {
+            if (nombre.equals(""))
+        
+                throw new IllegalArgumentException("ERROR: No es posible asignar un nombre vacío.");
+            
+            this.nombre=nombre;
+        } 
+        
+        public void setTelefono ( String telefono)
+        {
+            if (!(telefono.matches(ER_TELEFONO)))
+            
+                    throw new IllegalArgumentException("ERROR: El teléfono no tiene un formato válido");
+            
+            
+            this.telefono=telefono;
+        }     
     
    }
 
