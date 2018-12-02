@@ -1,3 +1,6 @@
+
+import java.util.Objects;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,11 +28,11 @@ public class Contacto {
         } 
      
         public String getTelefono(){
-            return nombre;
+            return telefono;
         } 
      
-        public String getcorreo(){
-            return nombre;
+        public String getCorreo(){
+            return correo;
         } 
      
         public void setNombre(String Nombre) 
@@ -57,7 +60,7 @@ public class Contacto {
                     throw new IllegalArgumentException("ERROR: El correo no tiene un formato válido");
             
             
-            this.telefono=telefono;
+            this.correo=correo;
         }  
         
     //5.Crea el constructor con los parametros adecuados y que haga el mismo control que en el caso anterior.
@@ -69,5 +72,4 @@ public class Contacto {
              
          }
                  
-   
 }
