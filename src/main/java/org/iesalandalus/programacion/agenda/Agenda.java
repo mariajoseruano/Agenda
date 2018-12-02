@@ -119,6 +119,41 @@ errores mediante la excepcion OperationNotSupportedException: ya existe ese cont
         
         return indice;
         }
+   
+  /*Ejericio 11.Crea el método borrar que borrará un contacto de la lista dejando la misma compactada 
+(los contactos válidos al principio y los nulos al final). Apóyate en el método desplazarUnaPosicionHaciaIzquierda. 
+El método debe informar de los posibles errores mediante la excepcion OperationNotSupportedException. */
+   
+        private static void borraLibro() throws OperationNotSupportedException
+        {
+            String nombre;
+            int i;
+                
+            System.out.println("Introduce el contacto de la agenda a buscar");
+            nombre=Entrada.cadena();        
         
+            //Creamos el libro con los restantes atributos inventados
+            Contacto contacto=new Contacto(nombre,"654890345","juan@gmail.com");
+        
+            i=buscarIndiceCliente(contacto);
+        
+            if (i==-1)
+            throw new OperationNotSupportedException("El contacto a borrar no existe.");
+        else
+            desplazarUnaPosicionHaciaIzquierda(i);
+        }
+    
+         
+         
+         
+        private static void desplazarUnaPosicionHaciaIzquierda(int indice) 
+        {
+            for (int i = indice; i < agenda.length - 1 && agenda[i] != null; i++) 
+            {
+            agenda[i] = agenda[i+1];
+            }
+        }
+         
+         
   }
     
