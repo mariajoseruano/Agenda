@@ -6,6 +6,7 @@
 package org.iesalandalus.programacion.agenda;
 
 import javax.naming.OperationNotSupportedException;
+import org.iesalandalus.programacion.utilidades.Entrada;
 
 /**
  *
@@ -36,18 +37,18 @@ buscarPrimerIndiceComprobandoExistencia e IndiceNoSuperaTamano. El método debe 
 errores mediante la excepcion OperationNotSupportedException: ya existe ese contacto, el array está lleno, etc.*/ 
          
          
-    public void añadir(Contacto contacto)
-    { 
-        String nuevoContacto;
-        nuevoContacto=agenda.getContacto();     
+        public void añadir(Contacto contacto)
+        { 
+             String nuevoContacto;
+            nuevoContacto=agenda.getContacto();     
             
         {    
                      
-        contacto=new Contacto(nuevoContacto);
-        System.out.println("El nuevo contacto es:"+ nuevoContacto);  
+            contacto=new Contacto(nuevoContacto);
+            System.out.println("El nuevo contacto es:"+ nuevoContacto);  
        
         }
-    } 
+        } 
                         
        
        
@@ -81,7 +82,43 @@ errores mediante la excepcion OperationNotSupportedException: ya existe ese cont
                 return false;
         }
    
+   /*Ejercicio 10. Crea el método buscar que recibirá el nombre del contacto y devolverá el contacto.
+    Apoyáte en el método privado buscarIndiceCliente.*/
         
+        private static void buscar() throws OperationNotSupportedException
+        {
+            String nombre;
+            int i;
+            Contacto contacto;
+            
+            System.out.println("Introduce el nombre del contacto a buscar");
+            nombre=Entrada.cadena();        
+        
+            //Creamos el libro con los restantes atributos inventados
+            Contacto contacto=new Contacto(nombre, "657678987","maria@ruano.com");
+        
+            i=buscarIndiceClientes(contacto);
+        
+            if (i==-1){
+                throw new OperationNotSupportedException("El contacto buscado no se encuentra en la agenda");
+            }else
+                System.out.println("El contacto se encuentra en la posición "+i);
+        }
+    
+    
+        
+         private static int buscarIndiceCliente(Contacto contacto)
+        {
+             int indice=-1;
+        
+            for(int i=0;i<agenda.length;i++)
+        {
+            if (agenda[i]!=null && agenda[i].equals(contacto))
+                return indice=i;            
+        }
+        
+        return indice;
+        }
         
   }
     
