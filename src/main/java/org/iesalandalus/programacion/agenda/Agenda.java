@@ -16,5 +16,17 @@ public class Agenda {
     
     private int numContactos;
     private static int MAX_CONTACTOS;
+    private Contacto contacto;
+ 
+ //Ejercicio 8. Crear métodos get.Tener en cuenta getContactos devuelve una copia del array de contactos.
+    
+        public String getContactos(){
+                return contacto;
+        } 
+         public int getNumContactos(){
+                return numContactos;
+        } 
+        
+    
     
 }
