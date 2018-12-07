@@ -20,11 +20,11 @@ public class Agenda {
     private int numContactos;
     private Contacto contacto;
     private static final int MAX_CONTACTOS=10;
-    private static Contacto [] agenda=new Contacto[MAX_CONTACTOS];
+    private static Contacto [] lista=new Contacto[MAX_CONTACTOS];
  
  //Ejercicio 8. Crear métodos get.Tener en cuenta getContactos devuelve una copia del array de contactos.
     
-        public Contacto getContacto(){
+        public Contacto getContactos(){
                 return contacto;
         } 
          public int getNumContactos(){
@@ -37,34 +37,39 @@ buscarPrimerIndiceComprobandoExistencia e IndiceNoSuperaTamano. El método debe 
 errores mediante la excepcion OperationNotSupportedException: ya existe ese contacto, el array está lleno, etc.*/ 
          
          
-        public void añadir(Contacto contacto)
+        public void añadir()
         { 
-             String nuevoContacto;
-            nuevoContacto=agenda.getContacto();     
+            String nombre,telefono,correo;
+                
             
-        {    
-                     
-            contacto=new Contacto(nuevoContacto);
-            System.out.println("El nuevo contacto es:"+ nuevoContacto);  
-       
+            System.out.println("Añadir nuevo contacto");
+           
+            System.out.println("Nombre: ");
+            nombre=Entrada.cadena();
+            System.out.println("Teléfono: ");
+            telefono=Entrada.cadena();
+            System.out.println("Correo: ");
+            correo=Entrada.cadena();
+        
+            // Creamos el contacto:        
+            Contacto contacto=new Contacto(nombre, telefono, correo);
+            
         }
-        } 
                         
-       
-       
+              
         private static int buscaPrimerIndiceLibreExistencia(Contacto contacto ) throws OperationNotSupportedException
         {
              int indiceLibre=0;
              boolean encontradoContacto=false;
         
-            for(int i=0;i<agenda.length && !encontradoContacto;i++)
+            for(int i=0;i<lista.length && !encontradoContacto;i++)
             {
-                if (agenda[i]==null)
+                if (lista[i]==null)
                 {
                     encontradoContacto=true;
                     indiceLibre=i;
                 }
-            else if (agenda[i].equals(contacto))
+            else if (lista[i].equals(contacto))
             {
                 throw new OperationNotSupportedException("Ya existe un contacto con ese nombre.");
             }               
@@ -76,7 +81,7 @@ errores mediante la excepcion OperationNotSupportedException: ya existe ese cont
     
         private static boolean noSuperaTamaño(int j)
         {
-            if (j>=agenda.length)
+            if (j>=lista.length)
                 return true;
             else
                 return false;
@@ -89,20 +94,21 @@ errores mediante la excepcion OperationNotSupportedException: ya existe ese cont
         {
             String nombre;
             int i;
-            Contacto contacto;
-            
+                        
             System.out.println("Introduce el nombre del contacto a buscar");
             nombre=Entrada.cadena();        
         
-            //Creamos el libro con los restantes atributos inventados
-            Contacto contacto=new Contacto(nombre, "657678987","maria@ruano.com");
-        
-            i=buscarIndiceClientes(contacto);
+            //Creamos el contacto con los restantes atributos inventados
+            
+            Contacto contacto=new Contacto(nombre,"656787878","maria@gmail.com");
+            
+            i=buscarIndiceCliente(contacto);
         
             if (i==-1){
                 throw new OperationNotSupportedException("El contacto buscado no se encuentra en la agenda");
             }else
                 System.out.println("El contacto se encuentra en la posición "+i);
+             
         }
     
     
@@ -111,9 +117,9 @@ errores mediante la excepcion OperationNotSupportedException: ya existe ese cont
         {
              int indice=-1;
         
-            for(int i=0;i<agenda.length;i++)
+            for(int i=0;i<lista.length;i++)
         {
-            if (agenda[i]!=null && agenda[i].equals(contacto))
+            if (lista[i]!=null && lista[i].equals(contacto))
                 return indice=i;            
         }
         
@@ -137,9 +143,9 @@ El método debe informar de los posibles errores mediante la excepcion Operation
         
             i=buscarIndiceCliente(contacto);
         
-            if (i==-1)
+            if (i==-1){
             throw new OperationNotSupportedException("El contacto a borrar no existe.");
-        else
+            }else
             desplazarUnaPosicionHaciaIzquierda(i);
         }
     
@@ -148,12 +154,13 @@ El método debe informar de los posibles errores mediante la excepcion Operation
          
         private static void desplazarUnaPosicionHaciaIzquierda(int indice) 
         {
-            for (int i = indice; i < agenda.length - 1 && agenda[i] != null; i++) 
+            for (int i = indice; i < lista.length - 1 && lista[i] != null; i++) 
             {
-            agenda[i] = agenda[i+1];
+            lista[i] = lista[i+1];
             }
         }
          
-         
-  }
+    
+        
+}
     
